@@ -1,7 +1,6 @@
 # modules always on top
 import math  # provides mathematical helpers
 
-
 # string data type
 
 # literal assignment
