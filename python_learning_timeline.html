@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Python Learning Timeline</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			
+			body {
+				font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				min-height: 100vh;
+				padding: 20px;
+			}
+			
+			.container {
+				max-width: 900px;
+				margin: 0 auto;
+			}
+			
+			header {
+				text-align: center;
+				color: white;
+				margin-bottom: 40px;
+				padding: 20px;
+			}
+			
+			header h1 {
+				font-size: 2.5em;
+				margin-bottom: 10px;
+			}
+			
+			header p {
+				font-size: 1.1em;
+				opacity: 0.9;
+			}
+			
+			.timeline {
+				position: relative;
+			}
+			
+			.month-card {
+				background: white;
+				border-radius: 12px;
+				margin-bottom: 30px;
+				overflow: hidden;
+				box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+				transition: transform 0.3s ease;
+			}
+			
+			.month-card:hover {
+				transform: translateY(-5px);
+			}
+			
+			.month-header {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				padding: 25px;
+				cursor: pointer;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			
+			.month-header:hover {
+				background: linear-gradient(135deg, #5568d3 0%, #653a8a 100%);
+			}
+			
+			.month-title {
+				flex: 1;
+			}
+			
+			.month-title h2 {
+				font-size: 1.5em;
+				margin-bottom: 5px;
+			}
+			
+			.month-info {
+				opacity: 0.9;
+				font-size: 0.95em;
+			}
+			
+			.toggle-btn {
+				background: none;
+				border: none;
+				color: white;
+				font-size: 1.5em;
+				cursor: pointer;
+				transition: transform 0.3s ease;
+			}
+			
+			.toggle-btn.active {
+				transform: rotate(180deg);
+			}
+			
+			.month-content {
+				padding: 30px;
+				display: none;
+			}
+			
+			.month-content.active {
+				display: block;
+				animation: slideDown 0.3s ease;
+			}
+			
+			@keyframes slideDown {
+				from {
+					opacity: 0;
+					transform: translateY(-10px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+			
+			.section {
+				margin-bottom: 30px;
+			}
+			
+			.section h3 {
+				color: #667eea;
+				font-size: 1.3em;
+				margin-bottom: 15px;
+				display: flex;
+				align-items: center;
+			}
+			
+			.section h3::before {
+				content: attr(data-emoji);
+				margin-right: 10px;
+				font-size: 1.2em;
+			}
+			
+			.checklist {
+				list-style: none;
+			}
+			
+			.checklist li {
+				padding: 12px;
+				margin-bottom: 8px;
+				background: #f8f9fa;
+				border-radius: 6px;
+				cursor: pointer;
+				transition: all 0.2s ease;
+				display: flex;
+				align-items: center;
+			}
+			
+			.checklist li:hover {
+				background: #e9ecef;
+			}
+			
+			.checklist input[type="checkbox"] {
+				margin-right: 12px;
+				cursor: pointer;
+				width: 18px;
+				height: 18px;
+			}
+			
+			.checklist input[type="checkbox"]:checked + span {
+				text-decoration: line-through;
+				color: #999;
+			}
+			
+			.recap {
+				background: #fff3cd;
+				border-left: 4px solid #ffc107;
+				padding: 20px;
+				border-radius: 6px;
+				margin-top: 20px;
+			}
+			
+			.recap h4 {
+				color: #856404;
+				margin-bottom: 10px;
+			}
+			
+			.recap p {
+				color: #856404;
+				line-height: 1.6;
+			}
+			
+			.tips {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				padding: 30px;
+				border-radius: 12px;
+				margin-top: 40px;
+			}
+			
+			.tips h3 {
+				margin-bottom: 20px;
+				color: white;
+			}
+			
+			.tips ul {
+				list-style: none;
+			}
+			
+			.tips li {
+				padding: 10px 0;
+				line-height: 1.6;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<h1>🐍 Python Learning Timeline</h1>
+				<p><strong>5 Months</strong>
+				• <strong>7 Hours/Week</strong>
+				• <strong>~140 Total Hours</strong></p>
+				<p style="font-size: 0.95em; margin-top: 10px;">Based on Python Crash Course curriculum</p>
+			</header>
+
+			<div class="timeline">
+				<!-- Month 1 -->
+				<div class="month-card">
+					<div class="month-header" onclick="toggleMonth(0)">
+						<div class="month-title">
+							<h2>Month 1: Python Basics</h2>
+							<div class="month-info">Weeks 1-4 • 7 hrs/week</div>
+						</div>
+						<button class="toggle-btn" onclick="event.stopPropagation()">▼</button>
+					</div>
+					<div class="month-content" id="month-0">
+						<div class="section">
+							<h3 data-emoji="📍">Milestones</h3>
+							<ul class="checklist">
+								<li><input type="checkbox"><span>Understand variables, data types, and basic operations</span></li>
+								<li><input type="checkbox"><span>Learn conditional statements (if/elif/else)</span></li>
+								<li><input type="checkbox"><span>Master loops (for, while)</span></li>
+							</ul>
+						</div>
+
+						<div class="section">
+							<h3 data-emoji="📝">Assignments</h3>
+							<ul class="checklist">
+								<li><input type="checkbox"><span><strong>Assignment 1.1:</strong>
+								Create a simple number guessing game</span></li>
+								<li><input type="checkbox"><span><strong>Assignment 1.2:</strong>
+								Build a program that calculates BMI based on user input</span></li>
+								<li><input type="checkbox"><span><strong>Assignment 1.3:</strong>
+								Write a program using loops to print multiplication tables</span></li>
+							</ul>
+						</div>
+
+						<div class="recap">
+							<h4>🎯 Recap Challenge</h4>
+							<p>Build a program combining variables, conditionals, and loops (e.g., a password validator)</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Month 2 -->
+				<div class="month-card">
+					<div class="month-header" onclick="toggleMonth(1)">
+						<div class="month-title">
+							<h2>Month 2: Functions & Data Structures</h2>
+							<div class="month-info">Weeks 5-8 • 7 hrs/week</div>
+						</div>
+						<button class="toggle-btn" onclick="event.stopPropagation()">▼</button>
+					</div>
+					<div class="month-content" id="month-1">
+						<div class="section">
+							<h3 data-emoji="📍">Milestones</h3>
+							<ul class="checklist">
+								<li><input type="checkbox"><span>Master function definition and parameters</span></li>
+								<li><input type="checkbox"><span>Learn lists, tuples, and dictionaries</span></li>
+								<li><input type="checkbox"><span>Understand list comprehensions and dictionary operations</span></li>
+							</ul>
+						</div>
+
+						<div class="section">
+							<h3 data-emoji="📝">Assignments</h3>
+							<ul class="checklist">
+								<li><input type="checkbox"><span><strong>Assignment 2.1:</strong>
+								Create functions for common mathematical operations</span></li>
+								<li><input type="checkbox"><span><strong>Assignment 2.2:</strong>
+								Build a simple contact book using dictionaries</span></li>
+								<li><input type="checkbox"><span><strong>Assignment 2.3:</strong>
+								Work with lists—filter, sort, and manipulate data</span></li>
+							</ul>
+						</div>
+
+						<div class="recap">
+							<h4>🎯 Recap Challenge</h4>
+							<p>Build a mini project combining functions and data structures (e.g., a grade calculator)</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Month 3 -->
+				<div class="month-card">
+					<div class="month-header" onclick="toggleMonth(2)">
+						<div class="month-title">
+							<h2>Month 3: File Handling & Debugging</h2>
+							<div class="month-info">Weeks 9-12 • 7 hrs/week</div>
+						</div>
+						<button class="toggle-btn" onclick="event.stopPropagation()">▼</button>
+					</div>
+					<div class="month-content" id="month-2">
+						<div class="section">
+							<h3 data-emoji="📍">Milestones</h3>
+							<ul class="checklist">
+								<li><input type="checkbox"><span>Learn file I/O operations (read, write, append)</span></li>
+								<li><input type="checkbox"><span>Understand exception handling (try/except)</span></li>
+								<li><input type="checkbox"><span>Practice debugging techniques</span></li>
+							</ul>
+						</div>
+
+						<div class="section">
+							<h3 data-emoji="📝">Assignments</h3>
+							<ul class="checklist">
+								<li><input type="checkbox"><span><strong>Assignment 3.1:</strong>
+								Create a program that reads and writes to a text file</span></li>
+								<li><input type="checkbox"><span><strong>Assignment 3.2:</strong>
+								Build a to-do list app that saves to a file</span></li>
+								<li><input type="checkbox"><span><strong>Assignment 3.3:</strong>
+								Write error-handling code for user input validation</span></li>
+							</ul>
+						</div>
+
+						<div class="recap">
+							<h4>🎯 Recap Challenge</h4>
+							<p>Build a journaling app that saves entries to files with proper error handling</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Month 4 -->
+				<div class="month-card">
+					<div class="month-header" onclick="toggleMonth(3)">
+						<div class="month-title">
+							<h2>Month 4: Object-Oriented Programming</h2>
+							<div class="month-info">Weeks 13-16 • 7 hrs/week</div>
+						</div>
+						<button class="toggle-btn" onclick="event.stopPropagation()">▼</button>
+					</div>
+					<div class="month-content" id="month-3">
+						<div class="section">
+							<h3 data-emoji="📍">Milestones</h3>
+							<ul class="checklist">
+								<li><input type="checkbox"><span>Understand classes and objects</span></li>
+								<li><input type="checkbox"><span>Learn inheritance and polymorphism</span></li>
+								<li><input type="checkbox"><span>Master encapsulation and attributes</span></li>
+							</ul>
+						</div>
+
+						<div class="section">
+							<h3 data-emoji="📝">Assignments</h3>
+							<ul class="checklist">
+								<li><input type="checkbox"><span><strong>Assignment 4.1:</strong>
+								Create a class for a simple game character with attributes and methods</span></li>
+								<li><input type="checkbox"><span><strong>Assignment 4.2:</strong>
+								Build a bank account system with parent/child classes</span></li>
+								<li><input type="checkbox"><span><strong>Assignment 4.3:</strong>
+								Design a pet adoption system using OOP principles</span></li>
+							</ul>
+						</div>
+
+						<div class="recap">
+							<h4>🎯 Recap Challenge</h4>
+							<p>Build a small game or application using multiple classes (e.g., a simple inventory system)</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Month 5 -->
+				<div class="month-card">
+					<div class="month-header" onclick="toggleMonth(4)">
+						<div class="month-title">
+							<h2>Month 5: Capstone & Beyond</h2>
+							<div class="month-info">Weeks 17-20 • 7 hrs/week</div>
+						</div>
+						<button class="toggle-btn" onclick="event.stopPropagation()">▼</button>
+					</div>
+					<div class="month-content" id="month-4">
+						<div class="section">
+							<h3 data-emoji="📍">Milestones</h3>
+							<ul class="checklist">
+								<li><input type="checkbox"><span>Review all concepts learned</span></li>
+								<li><input type="checkbox"><span>Explore libraries (requests, json, datetime)</span></li>
+								<li><input type="checkbox"><span>Build and polish a capstone project</span></li>
+							</ul>
+						</div>
+
+						<div class="section">
+							<h3 data-emoji="📝">Assignments</h3>
+							<ul class="checklist">
+								<li><input type="checkbox"><span><strong>Assignment 5.1:</strong>
+								Create a program that fetches data from an API using requests library</span></li>
+								<li><input type="checkbox"><span><strong>Assignment 5.2:</strong>
+								Build a data analysis tool using JSON files</span></li>
+								<li><input type="checkbox"><span><strong>Assignment 5.3:</strong>
+								Capstone—build a complete project using everything learned</span></li>
+							</ul>
+						</div>
+
+						<div class="recap">
+							<h4>🎯 Recap Challenge</h4>
+							<p>Complete your capstone project and document it. Suggestions: weather app, expense tracker, or book cataloging system</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="tips">
+				<h3>💡 Tips for Success</h3>
+				<ul>
+					<li>✓ Code daily when possible, even if for just 30 minutes</li>
+					<li>✓ Don't just watch tutorials—type code yourself</li>
+					<li>✓ Reference official Python docs at python.org/docs</li>
+					<li>✓ On offline days, review past assignments or take notes</li>
+					<li>✓ Join Python communities (Reddit, Discord) for help and motivation</li>
+					<li>✓ Stay consistent with your 7 hrs/week commitment—consistency beats intensity!</li>
+				</ul>
+			</div>
+		</div>
+
+		<script>
+			function toggleMonth(index) {
+				const content = document.getElementById(`month-${index}`);
+				const btn = document.querySelectorAll('.toggle-btn')[index];
+				
+				content.classList.toggle('active');
+				btn.classList.toggle('active');
+			}
+			
+			// Open first month by default
+			document.addEventListener('DOMContentLoaded', function() {
+				toggleMonth(0);
+				});
+		</script>
+	</body>
+</html>
